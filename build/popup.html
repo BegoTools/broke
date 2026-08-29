@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Video Source Detector</title>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <h1>Video Source Detector</h1>
+      </div>
+      <div id="monitorBadge" class="badge badge-idle">Idle</div>
+    </header>
+
+    <section class="controls">
+      <div class="page-line" id="pageUrl">No page</div>
+      <div class="btn-row">
+        <button id="startBtn" class="btn btn-primary">Start Detection</button>
+        <button id="stopBtn" class="btn" disabled>Stop</button>
+      </div>
+      <div id="statusMessage" class="status-msg" role="status"></div>
+    </section>
+
+    <section class="results">
+      <div class="results-head">
+        <span>Sources Found: <strong id="sourceCount">0</strong></span>
+        <button id="advancedToggle" class="link-btn">Advanced Mode</button>
+      </div>
+      <div id="cards" class="cards"></div>
+      <div id="emptyHint" class="empty-hint">
+        Open an authorized video page, then press <strong>Start Detection</strong>.
+        If nothing appears, play the video — some sources load only on playback.
+      </div>
+    </section>
+
+    <section id="advancedPanel" class="advanced" hidden>
+      <div class="adv-tabs">
+        <button id="debugTab" class="tab active">Debug</button>
+        <button id="settingsTab" class="tab">Settings</button>
+        <button id="aiTab" class="tab">AI</button>
+      </div>
+      <div id="debugPanel" class="adv-body">
+        <div class="debug-actions">
+          <button id="clearLogs" class="link-btn">Clear logs</button>
+          <button id="exportLogs" class="link-btn">Export</button>
+        </div>
+        <pre id="debugLog" class="debug-log"></pre>
+      </div>
+      <div id="settingsPanel" class="adv-body" hidden>
+        <label class="row">
+          <span>Detection mode</span>
+          <select id="set_mode">
+            <option value="auto">Auto</option>
+            <option value="manual">Manual</option>
+          </select>
+        </label>
+        <label class="row">
+          <span>Preferred quality</span>
+          <select id="set_quality">
+            <option value="highest">Highest</option>
+            <option value="lowest">Lowest</option>
+            <option value="ask">Ask</option>
+          </select>
+        </label>
+        <label class="row checkbox">
+          <input type="checkbox" id="set_autoStart" /> <span>Auto-start monitoring</span>
+        </label>
+        <label class="row checkbox">
+          <input type="checkbox" id="set_autoPlay" /> <span>Auto attempt playback detection</span>
+        </label>
+        <label class="row checkbox">
+          <input type="checkbox" id="set_debug" /> <span>Debug mode</span>
+        </label>
+        <label class="row">
+          <span>History limit</span>
+          <select id="set_history">
+            <option value="0">Off</option>
+            <option value="10">Last 10</option>
+            <option value="25">Last 25</option>
+            <option value="50">Last 50</option>
+          </select>
+        </label>
+      </div>
+      <div id="aiPanel" class="adv-body" hidden>
+        <div class="ai-key-row">
+          <label class="ai-key-label" for="aiApiKey">Gemini API key (stored in this extension)</label>
+          <div class="ai-key-input">
+            <input id="aiApiKey" type="password" placeholder="AIza…" autocomplete="off" />
+            <button id="aiSaveKey" class="btn">Save</button>
+          </div>
+          <span id="aiKeyStatus" class="status-msg"></span>
+        </div>
+        <div class="debug-actions">
+          <button id="aiAnnotate" class="link-btn">Analyze links</button>
+          <span id="aiStatus" class="status-msg"></span>
+        </div>
+        <div id="aiTranscript" class="debug-log"></div>
+        <div class="ai-input-row">
+          <input id="aiPrompt" type="text" placeholder="Ask or command, e.g. start detection on 123" />
+          <button id="aiSend" class="btn">Send</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="privacy">Local-first · No uploads · No DRM bypass</span>
+    </footer>
+
+    <script type="module" src="popup/popup.js"></script>
+  </body>
+</html>

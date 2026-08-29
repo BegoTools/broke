@@ -1,0 +1,20 @@
+{
+  "name": "video-source-detector",
+  "version": "1.0.0",
+  "description": "Detect legitimate, browser-accessible video sources on authorized pages (Chrome/Brave, Manifest V3).",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts-assemble.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts || echo 'eslint not configured'"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
+    "@types/chrome": "^0.0.270",
+    "@types/node": "^20.0.0"
+  }
+}

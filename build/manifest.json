@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Video Source Detector",
+  "version": "1.0.0",
+  "description": "Automatically detect legitimate, browser-accessible video sources and provide the best available playback or download option. Does not bypass DRM, authentication, or paywalls.",
+  "action": {
+    "default_title": "Video Source Detector",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "downloads",
+    "contextMenus",
+    "tabs"
+  ],
+  "host_permissions": [],
+  "commands": {
+    "start_detection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V",
+        "mac": "Command+Shift+V"
+      },
+      "description": "Start video source detection on the current tab"
+    }
+  },
+  "minimum_chrome_version": "110",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
